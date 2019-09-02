@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.12" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DbguiController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <Label layoutX="237.0" layoutY="13.0" prefHeight="28.0" prefWidth="124.0" text="门 诊 挂 号" textFill="#5c0a41">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <TabPane layoutY="1.0" prefHeight="331.0" prefWidth="598.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="tab_reg" text="挂号">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btn_ok" layoutX="186.0" layoutY="236.0" mnemonicParsing="false" onMouseClicked="#btn_reg_clicked" text="确定">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btn_exit" layoutX="386.0" layoutY="236.0" mnemonicParsing="false" onMouseClicked="#btn_exit_clicked" text="退出">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="318.0" layoutY="29.0" text="医生姓名">
+                                 <font>
+                                    <Font name="Arial Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="65.0" layoutY="29.0" text="科室名称">
+                                 <font>
+                                    <Font name="Arial Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="65.0" layoutY="75.0" text="号种类别">
+                                 <font>
+                                    <Font name="Arial Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="318.0" layoutY="75.0" text="号种名称">
+                                 <font>
+                                    <Font name="Arial Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="318.0" layoutY="120.0" text="交款金额">
+                                 <font>
+                                    <Font name="Arial Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="65.0" layoutY="120.0" text="应缴金额">
+                                 <font>
+                                    <Font name="Arial Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="65.0" layoutY="166.0" text="找零金额">
+                                 <font>
+                                    <Font name="Arial Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="318.0" layoutY="166.0" text="挂号号码">
+                                 <font>
+                                    <Font name="Arial Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="pay" disable="true" layoutX="386.0" layoutY="117.0" onAction="#pay_okay" />
+                              <TextField fx:id="cost" editable="false" layoutX="131.0" layoutY="117.0" />
+                              <TextField fx:id="change" disable="true" editable="false" layoutX="131.0" layoutY="163.0" />
+                              <TextField fx:id="regnum" editable="false" layoutX="386.0" layoutY="163.0" />
+                              <ComboBox fx:id="kslb" editable="true" layoutX="131.0" layoutY="26.0" onAction="#ks_okay" onKeyReleased="#ks_typed" onMouseClicked="#ks_clicked" prefHeight="23.0" prefWidth="160.0" visibleRowCount="5" />
+                              <ComboBox fx:id="yslb" disable="true" editable="true" layoutX="386.0" layoutY="26.0" onAction="#ys_okay" onKeyReleased="#ys_typed" onMouseClicked="#ys_clicked" prefHeight="23.0" prefWidth="160.0" visibleRowCount="5" />
+                              <ComboBox fx:id="expert" layoutX="131.0" layoutY="72.0" onAction="#expert_selected" prefHeight="23.0" prefWidth="160.0" visibleRowCount="5" />
+                              <ComboBox fx:id="hzlb" disable="true" editable="true" layoutX="386.0" layoutY="72.0" onAction="#hz_okay" onKeyReleased="#hz_typed" onMouseClicked="#hz_clicked" prefHeight="23.0" prefWidth="160.0" visibleRowCount="5" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab fx:id="tab_unreg" onSelectionChanged="#tab_changed" text="退号">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="table_patreg" prefHeight="254.0" prefWidth="598.0">
+                                <columns>
+                                  <TableColumn fx:id="tGHBH" editable="false" prefWidth="49.0" text="编号" />
+                                  <TableColumn fx:id="tHZMC" editable="false" prefWidth="85.0" text="号种名称" />
+                                    <TableColumn fx:id="tYSBH" editable="false" prefWidth="71.0" text="医生编号" />
+                                    <TableColumn fx:id="tYSMC" editable="false" prefWidth="71.0" text="医生姓名" />
+                                    <TableColumn fx:id="tGHRC" editable="false" minWidth="4.0" prefWidth="71.0" text="挂号人数" />
+                                    <TableColumn fx:id="tGHFY" editable="false" minWidth="0.0" prefWidth="67.0" text="挂号费用" />
+                                    <TableColumn fx:id="tGHSJ" editable="false" minWidth="0.0" prefWidth="183.0" text="挂号时间" />
+                                </columns>
+                              </TableView>
+                              <Button fx:id="btn_unreg" layoutX="253.0" layoutY="266.0" mnemonicParsing="false" onAction="#btn_unreg_clicked" prefHeight="28.0" prefWidth="92.0" text="退号" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children></AnchorPane>
+  </items>
+</SplitPane>
